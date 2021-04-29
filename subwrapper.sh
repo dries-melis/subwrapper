@@ -75,7 +75,7 @@ if [ -f "$NO404DIR/$domain" ]; then
 	echo -e $LIGHTRED
     echo "[-] $NO404DIR/$domain exists."
 else
-	echo -e $LIGHTRED
+	echo -e $BLUE
 	echo "[*] Checking wich webservers are active from the output of httprobe and storing the output in $NO404DIR/$domain"
 	echo -e $NC
 	cat "$HTTPROBEDIR/$domain" | ono404 | tee "$NO404DIR/$domain"
