@@ -6,13 +6,19 @@ NC='\033[0m'
 domain=$1
 ASSETFINDERDIR="./assetfinder"
 HTTPROBEDIR="./httprobe"
-NO404DIR="./no404"
+NO404DIR="./ono404"
 
 echo -e $BLUE
 echo "[*]Running on $domain"
 
 #assetfinder $domain | httprobe | ~/tools/ono404/no404.sh |
 
+
+if [ -z $domain ]; then
+		echo -e $LIGHTRED
+		echo "[-] You must provide a domain!"
+		exit
+fi
 
 if [ -d "$ASSETFINDERDIR" ]; then
 	echo -e $LIGHTRED
@@ -72,7 +78,7 @@ else
 	echo -e $LIGHTRED
 	echo "[*] Checking wich webservers are active from the output of httprobe and storing the output in $NO404DIR/$domain"
 	echo -e $NC
-	cat "$HTTPROBEDIR/$domain" | no404 | tee "$NO404DIR/$domain"
+	cat "$HTTPROBEDIR/$domain" | ono404 | tee "$NO404DIR/$domain"
 fi
 
 
