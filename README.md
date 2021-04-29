@@ -6,6 +6,6 @@ It runs assetfinder, httprobe and ono404 and it stores it automaticaly in a nice
 To use you need to have assetfinder, httprobe and ono404 installed and in your path
 
 ## Use
-[ subwrapper google.com ]
+``` subwrapper google.com ```
 
 ### Don't use tee or ">" because the output wil aready be safed
