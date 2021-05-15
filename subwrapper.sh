@@ -7,9 +7,12 @@ domain=$1
 ASSETFINDERDIR="./assetfinder"
 HTTPROBEDIR="./httprobe"
 NO404DIR="./ono404"
+burpimport=false
+
 
 echo -e $BLUE
 echo "[*]Running on $domain"
+echo "this is the develope git branch"
 
 #assetfinder $domain | httprobe | ~/tools/ono404/no404.sh |
 
@@ -18,6 +21,13 @@ if [ -z $domain ]; then
 		echo -e $LIGHTRED
 		echo "[-] You must provide a domain!"
 		exit
+fi
+
+if [$(echo "$2" | head -c 1) = "-"]; then
+	flag = $(echo "$2" | head -c 1)
+	if [ $flag = "burpimport"]; then
+		$burpimport=true
+	fi
 fi
 
 if [ -d "$ASSETFINDERDIR" ]; then
@@ -81,7 +91,7 @@ else
 	cat "$HTTPROBEDIR/$domain" | ono404 | tee "$NO404DIR/$domain"
 fi
 
-
+cat "$ASSETFINDERDIR/$domain" >> burpimport
 
 echo -e $BLUE
 echo "[*] Finished subdomain scan!"
